@@ -25,7 +25,7 @@ private final UserRepository userRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity userEntity = userRepository
-                .findByName(username).orElseThrow(()-> new UsernameNotFoundException("User with name "+ username +"was not found"));
+                .findByUsername(username).orElseThrow(()-> new UsernameNotFoundException("User with name "+ username +"was not found"));
 
        return mapToUserDetails(userEntity);
     }
@@ -39,7 +39,7 @@ private final UserRepository userRepository;
                         collect(Collectors.toList());
 
         return new User(
-                userEntity.getName(),
+                userEntity.getUsername(),
                 userEntity.getPassword(),
                 authorities
         );

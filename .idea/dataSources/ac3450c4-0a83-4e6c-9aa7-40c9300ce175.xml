@@ -1108,14 +1108,13 @@ SELECT|sys.sys_config:null
     <column id="349" parent="343" name="email">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
     </column>
-    <column id="350" parent="343" name="name">
+    <column id="350" parent="343" name="password">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="351" parent="343" name="password">
+    <column id="351" parent="343" name="username">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
@@ -1125,8 +1124,8 @@ SELECT|sys.sys_config:null
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="353" parent="343" name="UK_3g1j96g94xpk3lpxl2qbl985x">
-      <ColNames>name</ColNames>
+    <index id="353" parent="343" name="UK_r43af9ap4edm43mmtq01oddj6">
+      <ColNames>username</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
@@ -1139,9 +1138,9 @@ SELECT|sys.sys_config:null
       <ColNames>email</ColNames>
       <UnderlyingIndexName>UK_6dotkott2kjsp8vw4d0m25fb7</UnderlyingIndexName>
     </key>
-    <key id="356" parent="343" name="UK_3g1j96g94xpk3lpxl2qbl985x">
-      <ColNames>name</ColNames>
-      <UnderlyingIndexName>UK_3g1j96g94xpk3lpxl2qbl985x</UnderlyingIndexName>
+    <key id="356" parent="343" name="UK_r43af9ap4edm43mmtq01oddj6">
+      <ColNames>username</ColNames>
+      <UnderlyingIndexName>UK_r43af9ap4edm43mmtq01oddj6</UnderlyingIndexName>
     </key>
     <column id="357" parent="344" name="user_entity_id">
       <Position>1</Position>

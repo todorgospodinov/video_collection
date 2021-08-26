@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -60,11 +60,11 @@
             <img alt="Metallica image" src="/img/metallica.jpg" class="w-50 rounded">
         </div>
         <div class="row g-3 align-items-center">
-            <div class="alert alert-danger" role="alert">
+            <div  th:if="${bad_credentials}"  class="alert alert-danger" role="alert">
                 This username and password combination does not exist.
             </div>
             <form
-                action="/"
+                th:action="@{/users/login}"
                 method="POST">
                 <!--User name-->
                 <div>

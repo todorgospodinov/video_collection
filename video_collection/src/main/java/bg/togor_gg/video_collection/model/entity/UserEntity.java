@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
-    private String name;
+    private String username;
     private String email;
     private String password;
     private String fullName;
@@ -18,19 +18,19 @@ public class UserEntity extends BaseEntity {
     public UserEntity() {
     }
 
-    @Column(name = "name", unique = true, nullable = false)
-    public String getName() {
-        return name;
+    @Column(name = "username", unique = true, nullable = false)
+    public String getUsername() {
+        return username;
     }
 
-    public UserEntity setName(String name) {
-        this.name = name;
+    public UserEntity setUsername(String username) {
+        this.username = username;
         return this;
     }
 
 
     @Email
-    @Column(name = "email", unique = true, nullable = false)
+    @Column(name = "email", unique = true)
        public String getEmail() {
         return email;
     }
