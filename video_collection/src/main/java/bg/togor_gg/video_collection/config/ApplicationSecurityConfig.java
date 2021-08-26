@@ -1,17 +1,27 @@
 package bg.togor_gg.video_collection.config;
 
+import bg.togor_gg.video_collection.service.impl.VideoCollectionUserService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
+    private final VideoCollectionUserService videoCollectionUserService;
+private final PasswordEncoder passwordEncoder;
+    public ApplicationSecurityConfig(VideoCollectionUserService videoCollectionUserService, PasswordEncoder passwordEncoder){
+
+        this.videoCollectionUserService = videoCollectionUserService;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.
@@ -53,9 +63,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.
-//                userDetailsService().
-//                passwordEncoder(passwordEncoder);
+
+        auth.
+                userDetailsService(videoCollectionUserService).
+                passwordEncoder(passwordEncoder);
     }
 }
 
