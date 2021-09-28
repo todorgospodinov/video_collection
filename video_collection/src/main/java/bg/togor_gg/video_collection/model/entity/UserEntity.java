@@ -50,7 +50,14 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
 
+    public UserEntity setFullName(String fullName) {
+        this.fullName = fullName;
+        return this;
+    }
 
     @ManyToMany(fetch = FetchType.EAGER)
     public List<UserRoleEntity> getRoles() {
@@ -62,8 +69,8 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
-    public UserEntity addRole(UserRoleEntity role) {
-        this.roles.add(role);
+    public UserEntity addRole(UserRoleEntity roleEntity) {
+        this.roles.add(roleEntity);
         return this;
     }
 }
