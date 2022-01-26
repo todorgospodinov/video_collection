@@ -1,10 +1,30 @@
 package bg.togor_gg.video_collection.model.binding;
 
+import bg.togor_gg.video_collection.model.validators.FieldMatch;
+
+import javax.validation.constraints.*;
+@FieldMatch(
+        first = "password",
+        second = "confirmPassword"
+)
 public class UserRegistrationBindingModel {
+
+    @NotEmpty
+    @Size(min=3)
     private String username;
+    @NotEmpty
+    @Email
     private String email;
-    private String password;
+    @NotEmpty
+    @Size(min=3)
     private String fullName;
+    @NotEmpty
+    @Size(min=5,max=20)
+    private String password;
+    @NotEmpty
+    private String confirmPassword;
+
+
 
     public String getUsername() {
         return username;
@@ -30,6 +50,15 @@ public class UserRegistrationBindingModel {
 
     public UserRegistrationBindingModel setPassword(String password) {
         this.password = password;
+        return this;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public UserRegistrationBindingModel setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
         return this;
     }
 

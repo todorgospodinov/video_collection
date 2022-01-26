@@ -6,11 +6,14 @@ import bg.togor_gg.video_collection.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/users")
@@ -37,8 +40,27 @@ public class UserController {
 
 
     @PostMapping("/register")
-public String registerAndLoginUser(UserRegistrationBindingModel registrationBindingModel){
-UserRegistrationServiceModel userServiceModel = modelMapper.map(registrationBindingModel, UserRegistrationServiceModel.class);
+public String registerAndLoginUser(@Valid UserRegistrationBindingModel registrationBindingModel,
+                                   BindingResult bindingResult,
+                                   RedirectAttributes redirectAttributes){
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("registrationBindingModel", registrationBindingModel);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.registrationBindingModel", bindingResult);
+
+            return "redirect:/users/register";
+        }
+
+//        if (userService.userNameExists(registrationBindingModel.getUsername())) {
+//            redirectAttributes.addFlashAttribute("registrationBindingModel", registrationBindingModel);
+//            redirectAttributes.addFlashAttribute("userExistsError", true);
+//
+//            return "redirect:/users/register";
+//        }
+
+UserRegistrationServiceModel userServiceModel = modelMapper.
+        map(registrationBindingModel, UserRegistrationServiceModel.class);
     //ToDO
         userService.registerAndLoginUser(userServiceModel);
         return "redirect:/home";
