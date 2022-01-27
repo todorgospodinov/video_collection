@@ -80,4 +80,9 @@ UserEntity newUser = modelMapper.map(serviceModel,UserEntity.class);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
     }
+
+    @Override
+    public boolean userNameExists(String username) {
+        return userRepository.findByUsername(username).isPresent();
+    }
 }
