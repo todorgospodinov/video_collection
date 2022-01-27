@@ -27,6 +27,11 @@ public class UserController {
         this.userService = userService;
     }
 
+    @ModelAttribute("registrationBindingModel")
+    public UserRegistrationBindingModel createBindingModel(){
+        return new UserRegistrationBindingModel();
+    }
+
     @GetMapping("/login")
     public String login() {
         return "login";

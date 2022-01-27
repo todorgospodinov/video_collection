@@ -19,7 +19,7 @@ public class UserRegistrationBindingModel {
     @Size(min=3)
     private String fullName;
     @NotEmpty
-    @Size(min=5,max=20)
+    @Size(min=5, max=20)
     private String password;
     @NotEmpty
     private String confirmPassword;
